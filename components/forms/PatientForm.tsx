@@ -84,7 +84,7 @@ const PatientForm = () => {
 
           <CustomFormField
             control={form.control}
-            fieldType={FormFieldType.INPUT}
+            fieldType={FormFieldType.PHONE_INPUT}
             name="phone"
             label="Phone"
             placeholder="(555) 123-4567"
