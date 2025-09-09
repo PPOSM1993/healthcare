@@ -4,12 +4,16 @@ import { ID, Query } from "node-appwrite";
 import { users } from "../appwrite.config";
 import { parseStringify } from "../utils";
 
+
 export const createUser = async (user: CreateUserParams & { password?: string }) => {
   try {
     // Detectar si estamos en server o cliente
     const isServer = typeof window === "undefined";
 
     let newUser;
+
+    console.log("isServer:", isServer);
+    console.log("users client config:", users);
 
     if (isServer && users) {
       // Server: crear usuario admin con Service Role
@@ -47,3 +51,13 @@ export const createUser = async (user: CreateUserParams & { password?: string })
     throw error;
   }
 };
+
+
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+    return parseStringify(user);
+  } catch (error) {
+    console.log(error)
+  }
+}
